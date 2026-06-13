@@ -119,28 +119,6 @@ docs/specs               项目规格、部署记录和发布规划记录
 
 根目录下的 `docs/specs` 用于项目规格、部署记录、验收记录和发布规划记录，不作为公开 Fumadocs 内容整包发布。
 
-## 自动化
-
-博客 Skill 的源文件在 `skills/01mvp-blog/SKILL.md`。
-
-检查 GitHub 仓库里的 Skill 是否可被发现：
-
-```sh
-npx skills@latest add 01MVP/blog-starter --list
-```
-
-把它安装到本项目的 Codex 环境：
-
-```sh
-npx skills@latest add 01MVP/blog-starter --skill 01mvp-blog --agent codex --yes
-```
-
-安装到其他 agent 时，把 `codex` 换成对应的小写 agent id。
-
-创建站点和维护已有博客时使用 `01mvp-blog` Skill。Cloudflare 资源创建和部署仍然需要具备 Cloudflare 能力的 agent skill 或工具。生成后的站点会暴露 `/openapi.json`，接入外部自动化前先在后台设置页创建受限 API Token。
-
-如果不想安装 Skill，也可以复制 [AI 初始化建站](./apps/web/content/docs/ai-setup.zh.md) 里的 Prompt 给 AI。推荐优先使用 Skill，因为后续初始化命令、Cloudflare 资源创建和验收清单可以随 Skill 更新。
-
 ## License
 
 MIT. See [LICENSE](./LICENSE).

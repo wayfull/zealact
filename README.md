@@ -119,28 +119,6 @@ Start with these guides:
 
 The root `docs/specs` folder is for project specifications, deployment records, acceptance notes, and release planning records. It is intentionally separate from the public Fumadocs source.
 
-## Automation
-
-The canonical blog Skill lives at `skills/01mvp-blog/SKILL.md`.
-
-Check that the Skill is discoverable from the GitHub repository:
-
-```sh
-npx skills@latest add 01MVP/blog-starter --list
-```
-
-Install it for Codex in this project:
-
-```sh
-npx skills@latest add 01MVP/blog-starter --skill 01mvp-blog --agent codex --yes
-```
-
-Replace `codex` with another lowercase agent id when installing for a different agent.
-
-Use the `01mvp-blog` Skill for site creation and OpenAPI-based maintenance. Cloudflare provisioning still needs Cloudflare-capable agent skills or tooling. Generated sites expose `/openapi.json`; create scoped API tokens in the admin settings before wiring external automation.
-
-If you do not want to install the Skill, copy the prompt in [AI Setup](./apps/web/content/docs/ai-setup.md) into your AI agent. The Skill is still recommended because setup commands, Cloudflare provisioning, and verification checks can be updated over time.
-
 ## License
 
 MIT. See [LICENSE](./LICENSE).
