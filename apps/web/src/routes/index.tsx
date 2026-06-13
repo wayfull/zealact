@@ -19,7 +19,6 @@ import {
   ArrowRightIcon,
   BookOpenIcon,
   CloudIcon,
-  ExternalLinkIcon,
   FilesIcon,
   FileTextIcon,
   GitBranchIcon,
@@ -76,14 +75,6 @@ type FreeHighlight = {
 type SetupPath = {
   readonly title: string;
   readonly description: string;
-  readonly cta: string;
-  readonly icon: LucideIcon;
-};
-
-type CreatorSpotlight = {
-  readonly title: string;
-  readonly description: string;
-  readonly href: string;
   readonly cta: string;
   readonly icon: LucideIcon;
 };
@@ -353,109 +344,7 @@ function ShelfHome({ posts, locale }: HomeViewProps) {
           </div>
         </div>
       </section>
-
-      <CreatorSection copy={copy} />
     </div>
-  );
-}
-
-function CreatorSection({ copy }: { readonly copy: ReturnType<typeof getHomeCopy> }) {
-  return (
-    <section className="border-b border-border bg-background">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 xl:px-12">
-        <div className="grid gap-9 lg:grid-cols-[0.4fr_0.6fr]">
-          <div data-home-reveal className="max-w-md">
-            <p className="text-sm font-semibold text-link uppercase">{copy.creatorEyebrow}</p>
-            <h2 className="mt-3 text-3xl leading-tight font-semibold text-balance">
-              {copy.creatorTitle}
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground">{copy.creatorBody}</p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button
-                render={<a href="https://01mvp.com/template" aria-label={copy.creatorPrimaryCta} />}
-                nativeButton={false}
-                className="hover:-translate-y-0.5"
-              >
-                {copy.creatorPrimaryCta}
-                <ExternalLinkIcon />
-              </Button>
-              <Button
-                render={<a href="https://makerjackie.com" aria-label={copy.creatorSecondaryCta} />}
-                variant="outline"
-                nativeButton={false}
-                className="hover:-translate-y-0.5"
-              >
-                {copy.creatorSecondaryCta}
-                <ExternalLinkIcon />
-              </Button>
-            </div>
-          </div>
-
-          <div className="grid gap-px border border-border bg-border md:grid-cols-3">
-            {copy.creatorSpotlights.map((item, index) => (
-              <CreatorSpotlightCard key={item.href} item={item} index={index} />
-            ))}
-          </div>
-        </div>
-
-        <div
-          data-home-reveal
-          style={getRevealStyle(210)}
-          className="mt-10 flex flex-col gap-3 border-y border-foreground py-5 text-sm sm:flex-row sm:items-center sm:justify-between"
-        >
-          <p className="font-semibold">
-            {copy.poweredByLabel}{" "}
-            <a href="https://01mvp.com" className="text-link hover:underline">
-              01mvp.com
-            </a>
-          </p>
-          <p className="text-muted-foreground">
-            {copy.creatorCreditLabel}{" "}
-            <a
-              href="https://makerjackie.com"
-              className="font-semibold text-foreground hover:text-link"
-            >
-              Jackie
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CreatorSpotlightCard({
-  index,
-  item,
-}: {
-  readonly index: number;
-  readonly item: CreatorSpotlight;
-}) {
-  const Icon = item.icon;
-
-  return (
-    <a
-      href={item.href}
-      data-home-reveal
-      data-home-card
-      style={getRevealStyle(index * 70)}
-      className="group bg-background p-5 transition hover:bg-muted/35"
-    >
-      <span
-        data-home-icon
-        className="flex size-10 items-center justify-center rounded-md bg-muted text-foreground"
-      >
-        <Icon className="size-5" />
-      </span>
-      <span className="mt-5 block text-lg leading-tight font-semibold group-hover:text-link">
-        {item.title}
-      </span>
-      <span className="mt-3 block text-sm leading-6 text-muted-foreground">{item.description}</span>
-      <span className="mt-5 flex items-center gap-2 text-sm font-semibold text-link">
-        {item.cta}
-        <ExternalLinkIcon className="size-4" />
-      </span>
-    </a>
   );
 }
 
@@ -1088,38 +977,6 @@ function getHomeCopy(locale: SupportedLocale) {
       contentTitle: "最新文章",
 
       // ── Creator ──
-      creatorEyebrow: "出品方",
-      creatorTitle: "由 MakerJackie 持续维护。",
-      creatorBody: "这里展示 01MVP 的 AI 建站方法、Jackie 的作品，以及可复用的 TanStack 全栈模板。",
-      creatorPrimaryCta: "查看 TanStack 全栈模板",
-      creatorSecondaryCta: "了解 Jackie",
-      creatorSpotlights: [
-        {
-          title: "Jackie / MakerJackie",
-          description:
-            "独立开发者，前 AI 算法工程师，周周黑客松社区发起人，长期记录 AI 创作、产品实验和可复用模板。",
-          href: "https://makerjackie.com",
-          cta: "查看作品",
-          icon: UserRoundIcon,
-        },
-        {
-          title: "01MVP 实战手册",
-          description: "从想法、MVP、上线到迭代，围绕真实交付整理 AI 产品实战方法。",
-          href: "https://01mvp.com",
-          cta: "访问 01MVP",
-          icon: BookOpenIcon,
-        },
-        {
-          title: "TanStack 全栈模板",
-          description:
-            "基于 TanStack Start 的全栈产品模板，适合用 AI 快速搭建 SaaS、工具站和可上线应用。",
-          href: "https://01mvp.com/template",
-          cta: "查看模板",
-          icon: RocketIcon,
-        },
-      ] satisfies CreatorSpotlight[],
-      poweredByLabel: "Powered by",
-      creatorCreditLabel: "创作者",
     };
   }
 
@@ -1362,39 +1219,5 @@ function getHomeCopy(locale: SupportedLocale) {
     contentTitle: "Latest posts",
 
     // ── Creator ──
-    creatorEyebrow: "Made by",
-    creatorTitle: "Maintained by MakerJackie.",
-    creatorBody:
-      "Explore 01MVP's AI website workflow, Jackie's projects, and the reusable TanStack full-stack template.",
-    creatorPrimaryCta: "View TanStack template",
-    creatorSecondaryCta: "Meet Jackie",
-    creatorSpotlights: [
-      {
-        title: "Jackie / MakerJackie",
-        description:
-          "Independent developer, former AI algorithm engineer, founder of Hackathon Weekly, and publisher of AI product experiments and reusable templates.",
-        href: "https://makerjackie.com",
-        cta: "View projects",
-        icon: UserRoundIcon,
-      },
-      {
-        title: "01MVP handbook",
-        description:
-          "A practical guide from idea, MVP, launch, and feedback to the next product iteration.",
-        href: "https://01mvp.com",
-        cta: "Visit 01MVP",
-        icon: BookOpenIcon,
-      },
-      {
-        title: "TanStack full-stack template",
-        description:
-          "A TanStack Start full-stack product template for shipping SaaS apps, tools, and AI-built products.",
-        href: "https://01mvp.com/template",
-        cta: "View template",
-        icon: RocketIcon,
-      },
-    ] satisfies CreatorSpotlight[],
-    poweredByLabel: "Powered by",
-    creatorCreditLabel: "Created by",
   };
 }

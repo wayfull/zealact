@@ -16,7 +16,6 @@ export const siteSettings: SiteSettings = {
     { label: "Demo", href: "/demo", i18n: { label: { zh: "博客 Demo" } } },
     { label: "Docs", href: "/docs", i18n: { label: { zh: "文档" } } },
     { label: "Articles", href: "/blog", i18n: { label: { zh: "文章" } } },
-    { label: "About", href: "/about", i18n: { label: { zh: "关于" } } },
   ],
   rssEnabled: true,
   commentsEnabled: true,

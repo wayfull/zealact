@@ -42,7 +42,6 @@ export function SiteShell({
   const githubLink = siteSettings.socialLinks.find(isGitHubSocialLink);
   const footerSocialLinks = siteSettings.socialLinks.filter((link) => !isGitHubSocialLink(link));
   const navigation = getMarketingNavigation(siteSettings.navigation, locale);
-  const creatorCreditLabel = locale === "zh" ? "创作者" : "Created by";
   const localizedNavigation = navigation.map((item) => ({
     ...item,
     href: getLocalizedDocsHref(item.href, locale),
@@ -107,20 +106,6 @@ export function SiteShell({
           <div>
             <p className="text-sm font-semibold">{siteSettings.name}</p>
             <p className="mt-1 text-xs text-muted-foreground">{siteSettings.description}</p>
-            <p className="mt-2 text-xs text-muted-foreground">
-              Powered by{" "}
-              <a href="https://01mvp.com" className="font-semibold text-foreground hover:text-link">
-                01mvp.com
-              </a>
-              <span aria-hidden="true"> · </span>
-              {creatorCreditLabel}{" "}
-              <a
-                href="https://makerjackie.com"
-                className="font-semibold text-foreground hover:text-link"
-              >
-                Jackie
-              </a>
-            </p>
           </div>
           {footerSocialLinks.length ? (
             <div className="flex flex-wrap items-center gap-3">
@@ -147,7 +132,6 @@ const defaultMarketingNavigation: ShellNavigationItem[] = [
   { label: "Demo", href: "/demo", i18n: { label: { zh: "博客 Demo" } } },
   { label: "Docs", href: "/docs", i18n: { label: { zh: "文档" } } },
   { label: "Articles", href: "/blog", i18n: { label: { zh: "文章" } } },
-  { label: "About", href: "/about", i18n: { label: { zh: "关于" } } },
 ];
 
 function getMarketingNavigation(
