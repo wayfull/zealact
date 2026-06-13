@@ -1,0 +1,50 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zealact-blog",
+  "main": "./src/server.ts",
+  "compatibility_date": "2026-06-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+  },
+  "workers_dev": true,
+  "triggers": {
+    "crons": ["0 9 * * *"],
+  },
+  "routes": [
+    {
+      "pattern": "zealact.ai",
+      "custom_domain": true,
+    },
+  ],
+  "vars": {
+    "VITE_BASE_URL": "https://zealact.ai",
+    "CMS_PUBLIC_SITE_URL": "https://zealact.ai",
+    "CMS_BACKUP_RETENTION_DAYS": "30",
+    "CMS_EMAIL_SENDING_ENABLED": "false",
+    "CMS_EMAIL_FROM": "",
+    "CMS_EMAIL_TO": "",
+    "CMS_PASSWORD_RESET_TTL_MINUTES": "30",
+    "VITE_TURNSTILE_SITE_KEY": "",
+  },
+  "d1_databases": [
+    {
+      "binding": "CMS_DB",
+      "database_name": "zealact-blog-cms",
+      "database_id": "91c2c477-4dfd-4da5-8502-94094fb93fd2",
+      "migrations_dir": "../../packages/db/migrations",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CMS_STORAGE",
+      "bucket_name": "zealact-blog-assets",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CMS_CACHE",
+      "id": "2f54afc861a84b579823f1c37f484a6e",
+    },
+  ],
+}
